@@ -1,0 +1,55 @@
+// :root{
+//     --primary-color:#272727;
+//     --accent-color: #ff652f;
+//     --text-color: #fff;
+// }
+
+
+// using partial files we can separate the scss file
+
+//Sass Partials
+//By default, Sass transpiles all the .scss files directly. However, when you want to import a file, you do not need the file to be transpiled directly.
+
+//Sass has a mechanism for this: If you start the filename with an underscore, Sass will not transpile it. Files named this way are called partials in Sass.
+
+//So, a partial Sass file is named with a leading underscore:
+
+@import'./resets';
+@import'./variables';
+
+
+@function weight($weight-name){
+    @return map-get($font-weights, $weight-name );
+}
+
+
+@mixin flexCenter($direction){
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction: $direction;
+}
+
+
+   
+body{
+    background: $primary-color;
+    color: $text-color;
+}
+
+.main{
+    
+    @include flexCenter(row);
+    width:calc(80%-40%);
+    margin: 0 auto;
+
+    // We can use the parent name using the ampersand  symbol &. To use all the properties we must use # enclosed with {} 
+
+    #{&}_para{
+        font-weight: weight(bold);
+    }
+
+    &:hover{
+        color:palevioletred
+    }
+}
